@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="brown">#6B4A0F</color>
     <color name="Bbrown">#8C4028</color>
+    <color name="PageColor">#F0EBDC</color>
+    <color name="gray">#CE99B7BB</color>
 </resources>

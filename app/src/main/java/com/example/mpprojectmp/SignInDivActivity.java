@@ -1,6 +1,5 @@
 package com.example.mpprojectmp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,12 +7,12 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
 
 public class SignInDivActivity extends AppCompatActivity {
 
@@ -25,10 +24,12 @@ public class SignInDivActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_div);
+
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
         et_email = findViewById(R.id.email_Signin);
         et_password = findViewById(R.id.password_Signin);
+
     }
 
     public void registerPage(View view) {
@@ -36,7 +37,7 @@ public class SignInDivActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void loginMethod(View view) {
+    public void SigninMethod(View view) {
         String email = et_email.getText().toString().trim();
         String password = et_password.getText().toString().trim();
 
@@ -57,32 +58,45 @@ public class SignInDivActivity extends AppCompatActivity {
             return;
         }
 
-        // Sign in with email and password
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    // Check user type in the Realtime Database
-                    String userId = mAuth.getCurrentUser().getUid();
-                    mDatabase.child(userId).child("userType").get().addOnCompleteListener(task1 -> {
-                        if (task1.isSuccessful() && task1.getResult().exists()) {
-                            String userType = task1.getResult().getValue(String.class);
-                            if ("registered".equals(userType)) {
-                                Toast.makeText(SignInDivActivity.this, "This user cannot log in.", Toast.LENGTH_LONG).show();
-                                mAuth.signOut(); // Log out the user
-                            } else {
-                                // Redirect to the main page if login is successful
-                                Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(SignInDivActivity.this, ButtonsActivity.class));
-                            }
-                        } else {
-                            Toast.makeText(SignInDivActivity.this, "User type not found.", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                } else {
-                    Toast.makeText(getApplicationContext(), task.getException().toString(), Toast.LENGTH_LONG).show();
-                }
+        // Attempt to sign in
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                checkUserType();
+            } else {
+                Toast.makeText(getApplicationContext(), Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void checkUserType() {
+        String userId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+        mDatabase.child(userId).child("userType").get().addOnCompleteListener(task1 -> {
+            if (task1.isSuccessful()) {
+                if (task1.getResult().exists()) {
+                    handleUserType(task1.getResult().getValue(String.class));
+                } else {
+                    Toast.makeText(SignInDivActivity.this, "User type not found.", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(SignInDivActivity.this, "Database error: " + Objects.requireNonNull(task1.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void handleUserType(String userType) {
+        if ("registered".equals(userType)) {
+            Toast.makeText(SignInDivActivity.this, "This user cannot log in.", Toast.LENGTH_LONG).show();
+            mAuth.signOut(); // Log out the user
+        } else {
+            Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_LONG).show();
+            navigateToHome();
+        }
+    }
+
+    private void navigateToHome() {
+        Intent intent = new Intent(SignInDivActivity.this, BottomNavActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish(); // Close SignInDivActivity
     }
 }

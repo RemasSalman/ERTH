@@ -58,27 +58,23 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    // Check user type in the Realtime Database
                     String userId = mAuth.getCurrentUser().getUid();
                     mDatabase.child(userId).child("userType").get().addOnCompleteListener(task1 -> {
                         if (task1.isSuccessful() && task1.getResult().exists()) {
                             String userType = task1.getResult().getValue(String.class);
                             if ("individuals".equals(userType)) {
-                                Toast.makeText(LoginActivity.this, "Users of type 'individual' cannot log in.", Toast.LENGTH_LONG).show();
-                                mAuth.signOut(); // Log out the user
-                            } else {
-                                // Redirect to the main page if login is successful
-                                Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(LoginActivity.this, ButtonsActivity.class));
+                                Toast.makeText(LoginActivity.this, "access denied", Toast.LENGTH_SHORT).show();
+                             } else {
+                                Toast.makeText(LoginActivity.this, "User type not recognized.", Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             Toast.makeText(LoginActivity.this, "User type not found.", Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else {
-                    Toast.makeText(getApplicationContext(), task.getException().toString(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_LONG).show();
                 }
             }
-        });
-    }
+  });
+}
 }

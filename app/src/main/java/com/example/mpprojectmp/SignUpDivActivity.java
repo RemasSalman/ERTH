@@ -1,5 +1,6 @@
 package com.example.mpprojectmp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -72,10 +73,12 @@ public class SignUpDivActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                // Set user type
-                                mDatabase.child(userId).child("userType").setValue("individuals");
+                                String userId = mAuth.getCurrentUser().getUid();
+                                mDatabase.child("users").child(userId).setValue(new User(email, "registered"));
+                                mDatabase.child(userId).child("userType1").setValue("individuals");
                                 Toast.makeText(getApplicationContext(), "You has been registered!", Toast.LENGTH_LONG).show();
-                                // Redirect to the main page or next activity
+                                Intent intent = new Intent();
+                                startActivity(intent.setClass(SignUpDivActivity.this, SignInDivActivity.class));
                             } else {
                                 Toast.makeText(getApplicationContext(), "FAILED: " + task.getException().toString(), Toast.LENGTH_LONG).show();
                             }
