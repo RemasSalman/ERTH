@@ -8,7 +8,7 @@
       <SelectionState runConfigName="WelcomeActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="BottomNavActivity">
+      <SelectionState runConfigName="MapActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

@@ -90,4 +90,5 @@ public class SignUpDivActivity extends AppCompatActivity {
             }
         });
     }
+
 }

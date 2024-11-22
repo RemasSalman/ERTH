@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -76,5 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
   });
+
 }
+
 }

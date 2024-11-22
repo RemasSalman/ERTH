@@ -3,19 +3,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:background="@drawable/welcomebackground">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.85"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background" />
 
     <TextView
         android:id="@+id/welcomeText"
+        android:layout_width="366dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="419dp"
+        android:fontFamily="serif"
+        android:text="  Welcome to ERTH"
+        android:textColor="@color/white"
+        android:textSize="34sp" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="321dp"
         android:fontFamily="serif"
-        android:gravity="center"
-        android:paddingStart="16dp"
-        android:paddingTop="380dp"
-        android:text="@string/welcome"
+        android:text="     "
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="19sp"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/arrowButton"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="343dp"
+        android:layout_marginEnd="193dp"
+        android:layout_marginBottom="356dp"
+        android:background="@drawable/shape"
+        android:fontFamily="serif"
+        android:gravity="left"
+        android:padding="8dp"
+        android:text="  Get Started  ➝"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="italic" />
 
 </RelativeLayout>

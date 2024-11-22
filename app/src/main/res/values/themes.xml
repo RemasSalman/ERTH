@@ -3,7 +3,7 @@
     <style name="Theme.MPprojectMP" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryDark">@color/Bbrown</item>
+        <item name="colorPrimaryDark">@color/gray</item>
         <!-- Customize your theme here. -->
 
     </style>
@@ -11,5 +11,15 @@
         <item name="android:activityOpenEnterAnimation">@anim/slide_right</item>
         <item name="android:activityOpenExitAnimation">@anim/slide_left</item>
     </style>
+
+    <style name="ThemeOverlay.Custom.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Custom.BottomSheet</item>
+    </style>
+
+    <style name="ShapeAppearance.Custom.BottomSheet" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
+
 
 </resources>

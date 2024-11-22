@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background2">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/background"
-        android:scaleType="centerCrop"
-        android:alpha="0.8" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:gravity="center"
+        android:orientation="vertical"
         android:padding="16dp">
+
+        <TextView
+            android:layout_width="432dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif"
+            android:gravity="left"
+            android:paddingTop="140dp"
+            android:paddingBottom="100dp"
+            android:text="     Join Us:\n\     Pick Your Role"
+            android:textColor="#97857B"
+            android:textSize="32dp"/>
 
         <Button
             android:id="@+id/researchersButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/shape"
-            android:backgroundTint="#FFFFFF"
-            android:gravity="center"
-            android:padding="16dp"
-            android:text="RESEARCHERS"
+            android:layout_width="320dp"
+            android:layout_height="77dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:backgroundTint="#D8BF9C8B"
             android:fontFamily="serif"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColor="@color/white" />
+            android:text="RESEARCHERS"
+            android:textSize="25dp"
+            app:cornerRadius="10dp" />
 
         <Button
             android:id="@+id/universitiesButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="UNIVERSITIES"
+            android:layout_width="320dp"
+            android:layout_height="77dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#D8BF9C8B"
             android:fontFamily="serif"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/shape"
-            android:textSize="20sp"
-            android:padding="16dp"
-            android:gravity="center"
-            android:textColor="#FFFFFF" />
+            android:textSize="25dp"
+            app:cornerRadius="10dp"
+            android:text="UNIVERSITIES"
+            />
+
 
         <Button
             android:id="@+id/individualsButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/shape"
-            android:gravity="center"
-            android:padding="16dp"
-            android:text="INDIVIDUALS"
+            android:layout_width="320dp"
+            android:layout_height="77dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#D8BF9C8B"
             android:fontFamily="serif"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColor="#FFFFFF" />
-
+            android:text="INDIVIDUALS"
+            android:textSize="25dp"
+            app:cornerRadius="10dp" />
 
     </LinearLayout>
 </FrameLayout>
