@@ -45,7 +45,7 @@
         android:layout_marginRight="13dp"
         android:fontFamily="serif"
         android:hint="@string/email"
-        android:inputType="textPassword"
+        android:inputType="textEmailAddress"
         android:textSize="20sp"
         />
     <EditText
