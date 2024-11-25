@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
-    <!-- صورة البروفايل -->
     <ImageView
         android:id="@+id/profileImage"
         android:layout_width="100dp"
@@ -15,7 +14,6 @@
         android:layout_marginTop="16dp"
         android:src="@drawable/profilee" />
 
-    <!-- اسم المستخدم -->
     <TextView
         android:id="@+id/usernameText"
         android:layout_width="wrap_content"
@@ -27,7 +25,6 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <!-- البريد الإلكتروني -->
     <TextView
         android:id="@+id/emailText"
         android:layout_width="wrap_content"
@@ -39,18 +36,38 @@
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/accountInfoTitle"
+        android:id="@+id/researchText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/emailText"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginStart="16dp"
+        android:text="Your Research:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/researchListText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/researchText"
+        android:layout_marginStart="10dp"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/accountInfoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/researchListText"
+        android:layout_marginTop="17dp"
         android:layout_marginStart="16dp"
         android:text="Account Info"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/black" />
 
-    <!-- اسم المستخدم (قابل للتعديل) -->
+
     <EditText
         android:id="@+id/editName"
         android:layout_width="match_parent"
@@ -59,7 +76,6 @@
         android:layout_margin="16dp"
         android:hint="Edit Name" />
 
-    <!-- رقم الهاتف -->
     <EditText
         android:id="@+id/editPhone"
         android:layout_width="match_parent"
@@ -69,7 +85,6 @@
         android:hint="Phone Number"
         android:inputType="phone" />
 
-    <!-- الجامعة/المؤسسة -->
     <EditText
         android:id="@+id/editInstitution"
         android:layout_width="match_parent"
@@ -91,7 +106,6 @@
         android:padding="12dp"
         android:drawableLeft="@drawable/done"
         android:drawablePadding="8dp" />
-
     <Button
         android:id="@+id/logoutButton"
         android:layout_width="match_parent"

@@ -22,16 +22,17 @@ public class AddResearchActivity extends AppCompatActivity {
 
         editTextResearch = findViewById(R.id.editTextResearch);
         btnPostResearch = findViewById(R.id.btnPostResearch);
-        databaseReference = FirebaseDatabase.getInstance().getReference("researches");
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userId).child("researches");
 
         btnPostResearch.setOnClickListener(view -> {
             String researchText = editTextResearch.getText().toString().trim();
             if (!researchText.isEmpty()) {
-                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                databaseReference.child(userId).push().setValue(researchText)
+                // Add search to database
+                databaseReference.push().setValue(researchText)
                         .addOnSuccessListener(aVoid -> {
                             Toast.makeText(AddResearchActivity.this, "Research posted successfully", Toast.LENGTH_SHORT).show();
-                            finish();
+                            finish(); // End activity after adding
                         })
                         .addOnFailureListener(e -> {
                             Toast.makeText(AddResearchActivity.this, "Failed to post research", Toast.LENGTH_SHORT).show();

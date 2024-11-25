@@ -24,14 +24,35 @@
         android:layout_below="@id/searchView"
         android:visibility="gone"/>
 
+    <TextView
+        android:id="@+id/tv_research_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Researches"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/searchView"
+        android:layout_marginStart="20dp"
+        android:visibility="visible"
+        android:textSize="20sp" />
+    <ListView
+        android:id="@+id/researchListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_research_header"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="90dp"
+        android:dividerHeight="1dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home"
+        android:text=" "
         android:textColor="@color/black"
         android:layout_centerInParent="true"
         android:textSize="36sp" />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"

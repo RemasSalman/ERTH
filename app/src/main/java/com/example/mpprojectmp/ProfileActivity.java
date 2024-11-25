@@ -110,11 +110,20 @@ public class ProfileActivity extends AppCompatActivity {
                     String name = snapshot.child("username").getValue(String.class);
                     String phone = snapshot.child("phone").getValue(String.class);
                     String institution = snapshot.child("institution").getValue(String.class);
+                    String userType = snapshot.child("userType").getValue(String.class);
 
                     editName.setText(name);
                     editPhone.setText(phone);
                     editInstitution.setText(institution);
                     usernameText.setText(name);
+
+                    if ("researcher".equals(userType)) { // Verify that the user is a researcher.
+                        loadUserResearch(); // Upload research if the user is a researcher
+                    } else {
+                        // Hide research section if user is not a researcher
+                        findViewById(R.id.researchText).setVisibility(View.GONE);
+                        findViewById(R.id.researchListText).setVisibility(View.GONE);
+                    }
                 } else {
                     Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show();
                 }
@@ -123,7 +132,24 @@ public class ProfileActivity extends AppCompatActivity {
             );
         }
     }
-
+    private void loadUserResearch() {
+        databaseReference.child("researches").get().addOnSuccessListener(snapshot -> {
+            if (snapshot.exists()) {
+                StringBuilder researchList = new StringBuilder();
+                for (DataSnapshot researchSnapshot : snapshot.getChildren()) {
+                    String title = researchSnapshot.getValue(String.class); // Get the search title
+                    researchList.append("\n - ").append(title); // Add title to series
+                }
+                TextView researchListText = findViewById(R.id.researchListText);
+                researchListText.setText(researchList.toString()); // Set text to display
+            } else {
+                TextView researchListText = findViewById(R.id.researchListText);
+                researchListText.setText("No research found");
+            }
+        }).addOnFailureListener(e ->
+                Toast.makeText(this, "Failed to load research", Toast.LENGTH_SHORT).show()
+        );
+    }
     private void saveUserProfile() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
