@@ -9,10 +9,11 @@
     <ImageView
         android:id="@+id/profileImage"
         android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/profilee" />
+
 
     <TextView
         android:id="@+id/usernameText"
@@ -20,10 +21,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/profileImage"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
         android:text="Username"
+        android:fontFamily="serif"
         android:textSize="18sp"
+        android:textColor="#BF9C8B"
         android:textStyle="bold" />
+
 
     <TextView
         android:id="@+id/emailText"
@@ -43,8 +46,9 @@
         android:layout_marginTop="17dp"
         android:layout_marginStart="16dp"
         android:text="Your Research:"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:fontFamily="serif"
+        android:textSize="16sp"
+        android:paddingTop="18dp"
         android:textColor="@color/black"/>
 
     <TextView
@@ -62,9 +66,10 @@
         android:layout_below="@id/researchListText"
         android:layout_marginTop="17dp"
         android:layout_marginStart="16dp"
-        android:text="Account Info"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:text="Account:"
+        android:paddingTop="30dp"
+        android:textSize="16sp"
+android:fontFamily="serif"
         android:textColor="@color/black" />
 
 
@@ -74,6 +79,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/accountInfoTitle"
         android:layout_margin="16dp"
+        android:fontFamily="serif"
+        android:paddingTop="20dp"
         android:hint="Edit Name" />
 
     <EditText
@@ -83,6 +90,8 @@
         android:layout_below="@id/editName"
         android:layout_marginHorizontal="16dp"
         android:hint="Phone Number"
+        android:fontFamily="serif"
+        android:paddingBottom="20dp"
         android:inputType="phone" />
 
     <EditText
@@ -91,43 +100,60 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editPhone"
         android:layout_marginHorizontal="16dp"
+        android:fontFamily="serif"
+        android:paddingTop="20dp"
         android:hint="Institution/University" />
 
     <Button
         android:id="@+id/saveButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         android:layout_below="@id/editInstitution"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="#CF9B7F72"
+        android:fontFamily="serif"
+android:layout_centerHorizontal="true"
         android:text="Save"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@color/blue"
-        android:textStyle="bold"
-        android:padding="12dp"
+        android:textSize="20dp"
+        android:textColor="#FAF8F8"
+        app:cornerRadius="10dp"
         android:drawableLeft="@drawable/done"
-        android:drawablePadding="8dp" />
+        />
+
     <Button
         android:id="@+id/logoutButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="6dp"
         android:layout_below="@id/saveButton"
-        android:text="Logout"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@color/red"
-        android:textStyle="bold"
-        android:padding="12dp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:backgroundTint="#29DECDC5"
+        android:fontFamily="serif"
+        android:layout_centerHorizontal="true"
+        android:text="Log out"
+        android:textSize="20dp"
+        app:cornerRadius="10dp"
+        android:textColor="@color/brown"
         android:drawableLeft="@drawable/logout"
-        android:drawablePadding="8dp" />
+
+        />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="400dp"
+        android:layout_height="69dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/bottom_background"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="17dp"
+        android:background="@drawable/nav"
+        android:elevation="2dp"
         app:itemIconSize="30dp"
         app:itemIconTint="@drawable/item_selector"
+        app:itemRippleColor="@android:color/transparent"
+        app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_menu" />
 
 </RelativeLayout>

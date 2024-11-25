@@ -52,15 +52,15 @@ android:textColor="@color/black"
         android:id="@+id/loginButton"
         android:layout_width="369dp"
         android:layout_height="60dp"
-
         android:layout_gravity="center"
         android:layout_marginTop="80dp"
         android:backgroundTint="#BF9C8B"
         android:fontFamily="serif"
         android:onClick="loginMethod"
-        android:text="Login"
         android:textSize="20dp"
-        app:cornerRadius="10dp" />
+        app:cornerRadius="10dp"
+        android:text="Login"
+        />
 
     <TextView
         android:layout_width="match_parent"

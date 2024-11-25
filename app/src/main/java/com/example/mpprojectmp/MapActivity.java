@@ -1,11 +1,11 @@
 package com.example.mpprojectmp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,12 +16,13 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
-import com.example.mpprojectmp.R;
+
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -106,6 +107,28 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();
 
+    }
+    private void bottomNavigation() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setSelectedItemId(R.id.bottom_profile);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+
+            int itemId = item.getItemId();
+            if (itemId ==  R.id.bottom_Map){
+                startActivity(new Intent(getApplicationContext(), MapActivity.class));
+                overridePendingTransition(R.anim.slide_right, R.anim.slide_left);
+                finish();
+                return true;
+            } else if (itemId ==  R.id.bottom_home) {
+                startActivity(new Intent(getApplicationContext(), BottomNavActivity.class));
+                overridePendingTransition(R.anim.slide_right, R.anim.slide_left);
+                finish();
+                return true;
+            }else if (itemId ==  R.id.bottom_profile) {
+                return true;
+            }else
+                return false;
+        });
     }
 
 }

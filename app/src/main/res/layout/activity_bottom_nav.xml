@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".BottomNavActivity"
-    android:background="@drawable/background2">
+>
 
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
-        android:layout_height="53dp"
+        android:layout_height="56dp"
         android:layout_marginTop="60dp"
         android:background="@drawable/search"
         android:queryHint="Search here" />
@@ -36,6 +36,7 @@
         android:layout_marginStart="20dp"
         android:visibility="visible"
         android:textSize="20sp" />
+
     <ListView
         android:id="@+id/researchListView"
         android:layout_width="match_parent"

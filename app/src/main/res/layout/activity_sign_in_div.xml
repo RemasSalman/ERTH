@@ -31,9 +31,10 @@
         android:layout_marginTop="30dp"
         android:layout_marginRight="13dp"
         android:fontFamily="serif"
-        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:textSize="20sp"
+        android:hint="@string/email"
+
         />
 
     <EditText
