@@ -1,19 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ProfileActivity">
 
+    <!-- صورة البروفايل -->
     <ImageView
         android:id="@+id/profileImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        />
+        android:layout_marginTop="16dp"
+        android:src="@drawable/profilee" />
 
+    <!-- اسم المستخدم -->
     <TextView
         android:id="@+id/usernameText"
         android:layout_width="wrap_content"
@@ -25,66 +27,93 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
+    <!-- البريد الإلكتروني -->
     <TextView
-        android:id="@+id/researcherInfoText"
+        android:id="@+id/emailText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/usernameText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="Account Info"
+        android:layout_marginTop="8dp"
+        android:text="user@example.com"
         android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/addResearchButton"
+    <TextView
+        android:id="@+id/accountInfoTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/researcherInfoText"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@id/emailText"
         android:layout_marginTop="16dp"
-        android:text="Add Articles/Research" />
-    <Button
-        android:id="@+id/viewResearchButton"
-        android:layout_width="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Account Info"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <!-- اسم المستخدم (قابل للتعديل) -->
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addResearchButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="View Published Research" />
+        android:layout_below="@+id/accountInfoTitle"
+        android:layout_margin="16dp"
+        android:hint="Edit Name" />
+
+    <!-- رقم الهاتف -->
+    <EditText
+        android:id="@+id/editPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editName"
+        android:layout_marginHorizontal="16dp"
+        android:hint="Phone Number"
+        android:inputType="phone" />
+
+    <!-- الجامعة/المؤسسة -->
+    <EditText
+        android:id="@+id/editInstitution"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editPhone"
+        android:layout_marginHorizontal="16dp"
+        android:hint="Institution/University" />
 
     <Button
-        android:id="@+id/backToHomeButton"
-        android:layout_width="wrap_content"
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/viewResearchButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="Back to Home" />
+        android:layout_margin="16dp"
+        android:layout_below="@id/editInstitution"
+        android:text="Save"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/blue"
+        android:textStyle="bold"
+        android:padding="12dp"
+        android:drawableLeft="@drawable/done"
+        android:drawablePadding="8dp" />
 
     <Button
         android:id="@+id/logoutButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/backToHomeButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="Logout" />
+        android:layout_margin="16dp"
+        android:layout_below="@id/saveButton"
+        android:text="Logout"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/red"
+        android:textStyle="bold"
+        android:padding="12dp"
+        android:drawableLeft="@drawable/logout"
+        android:drawablePadding="8dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="30dp"
         android:background="@drawable/bottom_background"
-        android:elevation="2dp"
         app:itemIconSize="30dp"
         app:itemIconTint="@drawable/item_selector"
-        app:itemRippleColor="@android:color/transparent"
-        app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_menu" />
 
 </RelativeLayout>

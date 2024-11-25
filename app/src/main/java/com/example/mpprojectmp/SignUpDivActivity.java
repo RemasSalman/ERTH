@@ -74,8 +74,8 @@ public class SignUpDivActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 String userId = mAuth.getCurrentUser().getUid();
-                                mDatabase.child("users").child(userId).setValue(new User(email, "registered"));
-                                mDatabase.child(userId).child("userType1").setValue("individuals");
+                                mDatabase.child("users").child(userId);
+                                mDatabase.child(userId).child("userType").setValue("individuals");
                                 Toast.makeText(getApplicationContext(), "You has been registered!", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent();
                                 startActivity(intent.setClass(SignUpDivActivity.this, SignInDivActivity.class));

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="fullNameEditText" type="id" />
+    <item name="phoneEditText" type="id" />
+    <item name="institutionEditText" type="id" />
+    <item name="saveButton" type="id" />
+    <item name="addArticleButton" type="id" />
+    <item name="emailTextView" type="id" />
+    <item name="usernameText" type="id" />
+    <item name="researcherInfoText" type="id" />
+    <item name="institutionIdInput" type="id" />
+    <item name="universityInput" type="id" />
+    <item name="fab_add_research" type="id" />
+</resources>

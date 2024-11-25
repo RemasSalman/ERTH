@@ -6,4 +6,12 @@
     <color name="Bbrown">#8C4028</color>
     <color name="PageColor">#F0EBDC</color>
     <color name="gray">#CE99B7BB</color>
+        <color name="red">#FF0000</color>
+        <color name="blue">#0000FF</color>
+        <color name="green">#00FF00</color>
+        <color name="background_color">#FFFFFF</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="primary" />
+    <color name="error" />
+    <color name="teal_700" />
 </resources>

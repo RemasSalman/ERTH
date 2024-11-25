@@ -65,8 +65,12 @@ public class LoginActivity extends AppCompatActivity {
                             String userType = task1.getResult().getValue(String.class);
                             if ("individuals".equals(userType)) {
                                 Toast.makeText(LoginActivity.this, "access denied", Toast.LENGTH_SHORT).show();
-                             } else {
-                                Toast.makeText(LoginActivity.this, "User type not recognized.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "welcome!!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(LoginActivity.this, BottomNavActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                                finish();
                             }
                         } else {
                             Toast.makeText(LoginActivity.this, "User type not found.", Toast.LENGTH_SHORT).show();
@@ -76,8 +80,8 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_LONG).show();
                 }
             }
-  });
+        });
 
-}
+    }
 
 }

@@ -2,6 +2,7 @@ package com.example.mpprojectmp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -9,6 +10,9 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +30,7 @@ public class BottomNavActivity extends AppCompatActivity {
     private ArrayAdapter <String> adapter;
     private List<String> itemList; // This will hold your data
     private List<String> filteredList;
+    private FloatingActionButton fabAddResearch;
 
     private DatabaseReference databaseReference;
 
@@ -37,6 +42,9 @@ public class BottomNavActivity extends AppCompatActivity {
 
         searchView = findViewById(R.id.searchView);
         listView = findViewById(R.id.listView);
+        fabAddResearch = findViewById(R.id.fab_add_research);
+        fabAddResearch.setVisibility(View.GONE); // إخفاء الزر افتراضيًا
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users"); // Adjust to your database node
         itemList = new ArrayList<>();
@@ -67,6 +75,13 @@ public class BottomNavActivity extends AppCompatActivity {
             }
         });
 
+        fabAddResearch.setOnClickListener(view -> {
+            Intent intent = new Intent(BottomNavActivity.this, AddResearchActivity.class);
+            startActivity(intent);
+        });
+
+
+
         bottomNavigation();
     }
 
@@ -76,42 +91,56 @@ public class BottomNavActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.bottom_home);
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
-             int itemId = item.getItemId();
-             if (itemId ==  R.id.bottom_Map){
-                 startActivity(new Intent(getApplicationContext(), MapActivity.class));
-                 overridePendingTransition(R.anim.slide_right, R.anim.slide_left);
-                 finish();
-                 return true;
-             } else if (itemId ==  R.id.bottom_home) {
-                 return true;
-             }else if (itemId ==  R.id.bottom_profile) {
-                 startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                 overridePendingTransition(R.anim.slide_right, R.anim.slide_left);
-                 finish();
-                 return true;
-             }else
-                 return false;
+            int itemId = item.getItemId();
+            if (itemId ==  R.id.bottom_Map){
+                startActivity(new Intent(getApplicationContext(), MapActivity.class));
+                overridePendingTransition(R.anim.slide_right, R.anim.slide_left);
+                finish();
+                return true;
+            } else if (itemId ==  R.id.bottom_home) {
+                return true;
+            }else if (itemId ==  R.id.bottom_profile) {
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                overridePendingTransition(R.anim.slide_right, R.anim.slide_left);
+                finish();
+                return true;
+            }else
+                return false;
 
 
         });
     }
 
+
+
     private void loadDataFromFirebase() {
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid(); // جلب معرّف المستخدم الحالي
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId); // جلب بيانات المستخدم باستخدام userId
+
+        userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 itemList.clear(); // Clear the list before adding new data
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String email = snapshot.child("email").getValue(String.class);
-                    String fullName = snapshot.child("fullName").getValue(String.class);
 
-                    // Combine email and full name
-                    if (email != null && fullName != null) {
-                        String combined = fullName + " (" + email + ")";
-                        itemList.add(combined);
-                    }
+                // جلب بيانات المستخدم مثل الإيميل واسم المستخدم ونوع المستخدم
+                String email = dataSnapshot.child("email").getValue(String.class);
+                String fullName = dataSnapshot.child("fullName").getValue(String.class);
+                String userType = dataSnapshot.child("userType").getValue(String.class);
+
+                // Combine email and full name
+                if (email != null && fullName != null) {
+                    String combined = fullName + " (" + email + ")";
+                    itemList.add(combined);
                 }
-                // Initially show all data
+
+                // Check if the user type is researcher
+                if ("researcher".equalsIgnoreCase(userType)) {
+                    fabAddResearch.setVisibility(View.VISIBLE); // عرض الزر إذا كان باحثًا
+                } else {
+                    fabAddResearch.setVisibility(View.GONE); // إخفاء الزر إذا لم يكن باحثًا
+                }
+
+                // Initially show data for the current user
                 filteredList.clear();
                 filteredList.addAll(itemList);
                 adapter.notifyDataSetChanged(); // Notify the adapter about data changes
