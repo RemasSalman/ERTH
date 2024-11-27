@@ -1,15 +1,14 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="#B8FFFFFF">
+    android:backgroundTint="@android:color/transparent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_top_background"
         android:orientation="vertical">
-
-        <!-- Product Info Section -->
+        <!--  Product Info Section  -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,45 +47,54 @@
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
-
-        <!-- Actions Section -->
+        <!--  Actions Section  -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray" />
 
         <LinearLayout
+            android:id="@+id/add_to_favorites"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?selectableItemBackground"
-            android:layout_marginTop="16dp"
             android:orientation="horizontal"
             android:paddingHorizontal="16dp"
             android:paddingVertical="8dp">
 
-
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_favorite" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:gravity="center_vertical"
-                android:textSize="14sp"
-                android:text="Add to Favorites" />
+                android:text="Add to Favorites"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/share_product"
             android:layout_width="match_parent"
-            android:layout_height="128dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?selectableItemBackground"
             android:orientation="horizontal"
             android:paddingHorizontal="16dp"
             android:paddingVertical="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_share" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -96,6 +104,5 @@
                 android:text="Share Product Via"
                 android:textSize="14sp" />
         </LinearLayout>
-
     </LinearLayout>
 </FrameLayout>

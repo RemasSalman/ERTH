@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,19 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MPprojectMP"
         tools:targetApi="31">
-
-        <!-- الأنشطة الأخرى -->
-        <activity
-            android:name=".MapActivity"
-            android:exported="false" />
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".BottomNavActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SitesCriticality"
             android:exported="false" />
         <activity
             android:name=".SignUpDivActivity"
@@ -39,16 +33,29 @@
             android:name=".SignInDivActivity"
             android:exported="false" />
         <activity
+            android:name=".AddResearchActivity"
+            android:exported="true" />
+        <activity
             android:name=".WelcomeActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".SitesCriticality"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".AddResearchActivity"
-            android:exported="false" />
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCtOO0Y_fvp_z6gfWJaAzf5zuxy9gU5GAg" />
+        <activity
+            android:name=".MapActivity"
+            android:exported="false"
+            android:label="@string/title_activity_maps">
+
+        </activity>
     </application>
 </manifest>
