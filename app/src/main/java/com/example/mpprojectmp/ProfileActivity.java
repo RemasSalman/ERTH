@@ -83,8 +83,8 @@ public class ProfileActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
             int itemId = item.getItemId();
-            if (itemId ==  R.id.bottom_Map){
-                startActivity(new Intent(getApplicationContext(), MapActivity.class));
+            if (itemId ==  R.id.bottom_Site){
+                startActivity(new Intent(getApplicationContext(), SitesCriticality.class));
                 overridePendingTransition(R.anim.slide_right, R.anim.slide_left);
                 finish();
                 return true;

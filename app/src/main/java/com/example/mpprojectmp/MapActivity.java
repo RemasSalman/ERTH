@@ -1,6 +1,5 @@
 package com.example.mpprojectmp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,25 +7,21 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
+import com.example.mpprojectmp.R;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -46,7 +41,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         if (extras != null) {
             criticalSites.addAll((ArrayList<Map<String, Serializable>>) extras.getSerializable("critical_sites"));
         }
-        bottomNavigation();
     }
 
     @Override
@@ -64,7 +58,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             .position(siteLocation)
                             .title(siteName)
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)))
-                    .setTag(site);
+                    .setTag(site); // Attach the site data to the marker
         }
 
         if (!criticalSites.isEmpty()) {
@@ -88,32 +82,29 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.ThemeOverlay_Custom_BottomSheetDialog);
         View bottomSheetView = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_layout, null);
 
-        // Set up the UI elements
+// Set up the UI elements
         ImageView productImage = bottomSheetView.findViewById(R.id.product_image);
-        TextView productName = bottomSheetView.findViewById(R.id.product_name);
-        TextView productDetails = bottomSheetView.findViewById(R.id.product_details);
-        LinearLayout addToFavorites = bottomSheetView.findViewById(R.id.add_to_favorites);
-        LinearLayout shareProduct = bottomSheetView.findViewById(R.id.share_product);
-
+        TextView productName = bottomSheetView.findViewById(R.id.Site_name);
+        TextView productDetails = bottomSheetView.findViewById(R.id.Site_details);
+        TextView SiteRegDate = bottomSheetView.findViewById(R.id.Reg_date);
+        TextView SiteCriticality = bottomSheetView.findViewById(R.id.criticality);
+        TextView SiteExpedition = bottomSheetView.findViewById(R.id.Expedition);
+        TextView ContactInfo = bottomSheetView.findViewById(R.id.Contact_info);
         // Populate data
         productName.setText(siteDetails.get("name").toString());
         productDetails.setText("Latitude: " + siteDetails.get("latitude") + ", \nLongitude: " + siteDetails.get("longitude"));
+        SiteRegDate.setText("Registraion Date: " + siteDetails.get("date of registration"));
+        SiteCriticality.setText("Criticality State: " + siteDetails.get("Criticality State"));
+        SiteExpedition.setText("Is there an expedition?  " + siteDetails.get("Expedition"));
+        ContactInfo.setText("Email:  " + siteDetails.get("Email")+ "\n\n"+"\nPhone number: "+ siteDetails.get("PhoneNumber"));
         // Set a placeholder image for now
-        productImage.setImageResource(R.drawable.ic_placeholder);
+        productImage.setImageResource(R.drawable.mountain);
 
-        // Add click listeners
-        addToFavorites.setOnClickListener(v -> {
-            // Add logic to handle "Add to Favorites" click here
-        });
-
-        shareProduct.setOnClickListener(v -> {
-            // Add logic to handle "Share Product Via" click here
-        });
 
         FrameLayout bottomSheet = bottomSheetDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
         if (bottomSheet != null) {
             BottomSheetBehavior<View> behavior = BottomSheetBehavior.from(bottomSheet);
-            behavior.setPeekHeight(300); // Adjust as needed
+            behavior.setPeekHeight(600); // Adjust as needed
             behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             bottomSheet.setBackgroundResource(R.drawable.rounded_top_background); // Apply rounded background
         }
@@ -122,29 +113,5 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         bottomSheetDialog.show();
 
     }
-
-    private void bottomNavigation() {
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
-        bottomNavigationView.setSelectedItemId(R.id.bottom_Map);
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-
-            int itemId = item.getItemId();
-            if (itemId == R.id.bottom_profile) {
-                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                overridePendingTransition(R.anim.slide_right, R.anim.slide_left);
-                finish();
-                return true;
-            } else if (itemId == R.id.bottom_home) {
-                startActivity(new Intent(getApplicationContext(), MapActivity.class));
-                overridePendingTransition(R.anim.slide_right, R.anim.slide_left);
-                finish();
-                return true;
-            } else if (itemId == R.id.bottom_Map){
-                return true;
-            }else
-                return false;
-        });
-    }
-
 
 }

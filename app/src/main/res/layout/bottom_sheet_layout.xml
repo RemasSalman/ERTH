@@ -1,14 +1,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@android:color/transparent">
+    android:backgroundTint="#B8FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_top_background"
         android:orientation="vertical">
-        <!--  Product Info Section  -->
+
+        <!-- Site Info Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -17,10 +18,10 @@
 
             <ImageView
                 android:id="@+id/product_image"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="77dp"
+                android:layout_height="75dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_placeholder" />
+                android:src="@drawable/mountain" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -31,30 +32,98 @@
                 android:paddingStart="8dp">
 
                 <TextView
-                    android:id="@+id/product_name"
+                    android:id="@+id/Site_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Product Name"
-                    android:textSize="16sp"
+                    android:fontFamily="serif"
+                    android:text="Site Name"
+                    android:textSize="24sp"
+                    android:textColor="#800000"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/product_details"
+                    android:id="@+id/Site_details"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Product details or price"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="14sp" />
+                    android:fontFamily="serif"
+                    android:text="Site details "
+                    android:textColor="#A4262525"
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
-        <!--  Actions Section  -->
+
+        <!-- Actions Section -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray" />
 
         <LinearLayout
-            android:id="@+id/add_to_favorites"
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:minHeight="48dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp">
+
+
+            <TextView
+                android:id="@+id/Reg_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:text="Registration date:"
+                android:textColor="@android:color/black"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp">
+
+            <TextView
+                android:id="@+id/criticality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:text="Criticality:"
+                android:textColor="@android:color/black"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp">
+
+            <TextView
+                android:id="@+id/Expedition"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:fontFamily="serif"
+                android:text="Expedition:"
+                android:textColor="@android:color/black"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -65,44 +134,15 @@
             android:paddingHorizontal="16dp"
             android:paddingVertical="8dp">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_favorite" />
-
             <TextView
+                android:id="@+id/Contact_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:gravity="center_vertical"
-                android:text="Add to Favorites"
-                android:textSize="14sp" />
+                android:fontFamily="serif"
+                android:text="Contact information:"
+                android:textColor="@android:color/black"
+                android:textSize="17sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/share_product"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?selectableItemBackground"
-            android:orientation="horizontal"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="8dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_share" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:gravity="center_vertical"
-                android:text="Share Product Via"
-                android:textSize="14sp" />
-        </LinearLayout>
     </LinearLayout>
 </FrameLayout>

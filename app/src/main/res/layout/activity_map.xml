@@ -26,7 +26,8 @@
         android:elevation="2dp"
         app:itemIconSize="30dp"
         app:itemIconTint="@drawable/item_selector"
-        app:itemRippleColor="@android:color/transparent"
+        app:itemRippleColor="@color/white"
+        app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_menu" />
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.mpprojectmp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -59,44 +63,31 @@ public class SignInDivActivity extends AppCompatActivity {
         }
 
         // Attempt to sign in
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                checkUserType();
-            } else {
-                Toast.makeText(getApplicationContext(), Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    private void checkUserType() {
-        String userId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-        mDatabase.child(userId).child("userType").get().addOnCompleteListener(task1 -> {
-            if (task1.isSuccessful()) {
-                if (task1.getResult().exists()) {
-                    handleUserType(task1.getResult().getValue(String.class));
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    String userId = mAuth.getCurrentUser().getUid();
+                    mDatabase.child(userId).child("userType").get().addOnCompleteListener(task1 -> {
+                        if (task1.isSuccessful() && task1.getResult().exists()) {
+                            String userType = task1.getResult().getValue(String.class);
+                            if ("registered".equals(userType)) {
+                                Toast.makeText(SignInDivActivity.this, "access denied", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(SignInDivActivity.this, "welcome!!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SignInDivActivity.this, BottomNavActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                                finish();
+                            }
+                        } else {
+                            Toast.makeText(SignInDivActivity.this, "User type not found.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 } else {
-                    Toast.makeText(SignInDivActivity.this, "User type not found.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_LONG).show();
                 }
-            } else {
-                Toast.makeText(SignInDivActivity.this, "Database error: " + Objects.requireNonNull(task1.getException()).getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void handleUserType(String userType) {
-        if ("registered".equals(userType)) {
-            Toast.makeText(SignInDivActivity.this, "This user cannot log in.", Toast.LENGTH_LONG).show();
-            mAuth.signOut(); // Log out the user
-        } else {
-            Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_LONG).show();
-            navigateToHome();
-        }
-    }
-
-    private void navigateToHome() {
-        Intent intent = new Intent(SignInDivActivity.this, BottomNavActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish(); // Close SignInDivActivity
     }
 }

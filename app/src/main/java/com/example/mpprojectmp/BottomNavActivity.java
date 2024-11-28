@@ -108,8 +108,8 @@ public class BottomNavActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
             int itemId = item.getItemId();
-            if (itemId ==  R.id.bottom_Map){
-                startActivity(new Intent(getApplicationContext(), MapActivity.class));
+            if (itemId ==  R.id.bottom_Site){
+                startActivity(new Intent(getApplicationContext(), SitesCriticality.class));
                 overridePendingTransition(R.anim.slide_right, R.anim.slide_left);
                 finish();
                 return true;
@@ -122,8 +122,6 @@ public class BottomNavActivity extends AppCompatActivity {
                 return true;
             }else
                 return false;
-
-
         });
     }
 
@@ -142,7 +140,7 @@ public class BottomNavActivity extends AppCompatActivity {
                         for (DataSnapshot researchSnapshot : researchesSnapshot.getChildren()) {
                             String researchTitle = researchSnapshot.getValue(String.class);
                             if (fullName != null && researchTitle != null) {
-                                researchList.add(fullName + " : is posted these researche\n " + researchTitle);
+                                researchList.add(fullName + " : \n " + researchTitle);
                             }
                         }
                     }

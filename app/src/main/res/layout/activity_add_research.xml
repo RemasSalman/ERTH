@@ -13,7 +13,8 @@
         android:hint="\n\n\Write your research here..."
         android:padding="16dp"
         android:gravity="start"
-
+android:fontFamily="serif"
+        android:textSize="18dp"
         android:inputType="textMultiLine"
         android:scrollbars="vertical" />
 
