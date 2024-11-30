@@ -36,9 +36,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
+                    android:layout_marginTop="20dp"
                     android:text="Site Name"
-                    android:textSize="24sp"
-                    android:textColor="#800000"
+                    android:textSize="20sp"
+                    android:textColor="#8E6E5F"
                     android:textStyle="bold" />
 
                 <TextView
@@ -139,6 +140,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
+                android:layout_marginBottom="30dp"
                 android:text="Contact information:"
                 android:textColor="@android:color/black"
                 android:textSize="17sp" />

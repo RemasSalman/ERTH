@@ -1,167 +1,167 @@
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity">
+    tools:context=".ProfileActivity"
+    android:background="@drawable/background2"
+    >
 
-
-<RelativeLayout
-   android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
-    tools:context=".ProfileActivity">
-
-    <ImageView
-        android:id="@+id/profileImage"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/profilee" />
-
-
-    <TextView
-        android:id="@+id/usernameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/profileImage"
-        android:layout_centerHorizontal="true"
-        android:text="Username"
-        android:fontFamily="serif"
-        android:textSize="18sp"
-        android:textColor="#BF9C8B"
-        android:textStyle="bold" />
-
-
-    <TextView
-        android:id="@+id/emailText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/usernameText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:text="user@example.com"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/researchText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/emailText"
-        android:layout_marginTop="17dp"
-        android:layout_marginStart="16dp"
-        android:text="Your Research:"
-        android:fontFamily="serif"
-        android:textSize="16sp"
-        android:paddingTop="18dp"
-        android:textColor="@color/black"/>
-
-    <TextView
-        android:id="@+id/researchListText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/researchText"
-        android:layout_marginStart="10dp"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/accountInfoTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/researchListText"
-        android:layout_marginTop="17dp"
-        android:layout_marginStart="16dp"
-        android:text="Account:"
-        android:paddingTop="30dp"
-        android:textSize="16sp"
-android:fontFamily="serif"
-        android:textColor="@color/black" />
-
-
-    <EditText
-        android:id="@+id/editName"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/accountInfoTitle"
-        android:layout_margin="16dp"
-        android:fontFamily="serif"
-        android:paddingTop="20dp"
-        android:hint="Edit Name" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="89dp"
+        android:fillViewport="true">
 
-    <EditText
-        android:id="@+id/editPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editName"
-        android:layout_marginHorizontal="16dp"
-        android:hint="Phone Number"
-        android:fontFamily="serif"
-        android:paddingBottom="20dp"
-        android:inputType="phone" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/editInstitution"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editPhone"
-        android:layout_marginHorizontal="16dp"
-        android:fontFamily="serif"
-        android:paddingTop="20dp"
-        android:hint="Institution/University" />
+            <ImageView
+                android:id="@+id/profileImage"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/profilee" />
 
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_below="@id/editInstitution"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="#CF9B7F72"
-        android:fontFamily="serif"
-android:layout_centerHorizontal="true"
-        android:text="Save"
-        android:textSize="20dp"
-        android:textColor="#FAF8F8"
-        app:cornerRadius="10dp"
-        android:drawableLeft="@drawable/done"
-        />
+            <TextView
+                android:id="@+id/usernameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profileImage"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="serif"
+                android:text="Username"
+                android:textColor="#BF9C8B"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/logoutButton"
-        android:layout_margin="6dp"
-        android:layout_below="@id/saveButton"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:backgroundTint="#29DECDC5"
-        android:fontFamily="serif"
-        android:layout_centerHorizontal="true"
-        android:text="Log out"
-        android:textSize="20dp"
-        app:cornerRadius="10dp"
-        android:textColor="@color/brown"
-        android:drawableLeft="@drawable/logout"
+            <TextView
+                android:id="@+id/emailText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/usernameText"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:text="user@example.com"
+                android:textSize="16sp" />
 
-        />
+            <TextView
+                android:id="@+id/researchText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/emailText"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="17dp"
+                android:fontFamily="serif"
+                android:paddingTop="18dp"
+                android:text="Researchs:"
+                android:textStyle="bold"
+                android:textColor="#9C8275"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/researchListText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/researchText"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/accountInfoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/researchListText"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="17dp"
+                android:fontFamily="serif"
+                android:paddingTop="30dp"
+                android:text="Account:"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/accountInfoTitle"
+                android:layout_margin="16dp"
+                android:fontFamily="serif"
+                android:hint="Edit Name"
+                android:paddingTop="20dp" />
+
+            <EditText
+                android:id="@+id/editPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editName"
+                android:layout_marginHorizontal="16dp"
+                android:fontFamily="serif"
+                android:hint="Phone Number"
+                android:inputType="phone"
+                android:paddingBottom="20dp" />
+
+            <EditText
+                android:id="@+id/editInstitution"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editPhone"
+                android:layout_marginHorizontal="16dp"
+                android:fontFamily="serif"
+                android:hint="Institution/University"
+                android:paddingTop="20dp" />
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/editInstitution"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:backgroundTint="#29DECDC5"
+                android:drawableLeft="@drawable/done"
+                android:fontFamily="serif"
+                android:text="Save"
+                android:textColor="@color/brown"
+                android:textSize="20dp"
+                app:cornerRadius="10dp" />
+
+            <Button
+                android:id="@+id/logoutButton"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/saveButton"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_margin="6dp"
+                android:backgroundTint="#29DECDC5"
+                android:drawableLeft="@drawable/logout"
+                android:fontFamily="serif"
+                android:text="Log out"
+                android:textColor="@color/brown"
+                android:textSize="20dp"
+                app:cornerRadius="10dp" />
+
+        </RelativeLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="69dp"
-        android:layout_marginStart="20dp"
-        android:layout_below="@id/logoutButton"
-
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="17dp"
+        android:layout_gravity="bottom"
         android:background="@drawable/nav"
         android:elevation="2dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="17dp"
+        app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
         app:itemIconTint="@drawable/item_selector"
         app:itemRippleColor="@color/white"
         app:labelVisibilityMode="unlabeled"
-        app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
         app:menu="@menu/bottom_menu" />
-
-</RelativeLayout>
-</ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

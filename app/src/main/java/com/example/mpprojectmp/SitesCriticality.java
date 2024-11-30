@@ -35,7 +35,7 @@ public class SitesCriticality extends AppCompatActivity {
         addSiteData("Rock Art", "N28 0 38 E40 54 47", "2015", "no", "Remas@gmail.com", "+966567895440", 2.5, 1.01, 1.00, 10.0, 1.0, 0.2);
 
         sendSitesToMapActivity();
-        bottomNavigation();
+
     }
 
     // Method to convert DMS to Decimal
@@ -120,29 +120,7 @@ public class SitesCriticality extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void bottomNavigation() {
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
-        bottomNavigationView.setSelectedItemId(R.id.bottom_Site);
-        bottomNavigationView.setOnItemSelectedListener(item -> {
 
-            int itemId = item.getItemId();
-            if (itemId ==  R.id.bottom_Site){
-                return true;
-
-            } else if (itemId ==  R.id.bottom_home) {
-                startActivity(new Intent(getApplicationContext(), BottomNavActivity.class));
-                overridePendingTransition(R.anim.slide_right, R.anim.slide_left);
-                finish();
-                return true;
-            }else if (itemId ==  R.id.bottom_profile) {
-                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                overridePendingTransition(R.anim.slide_right, R.anim.slide_left);
-                finish();
-                return true;
-            }else
-                return false;
-        });
-    }
 
 }
 

@@ -1,5 +1,6 @@
 package com.example.mpprojectmp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.io.Serializable;
@@ -41,6 +43,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         if (extras != null) {
             criticalSites.addAll((ArrayList<Map<String, Serializable>>) extras.getSerializable("critical_sites"));
         }
+        bottomNavigation();
     }
 
     @Override
@@ -112,6 +115,29 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();
 
+    }
+    private void bottomNavigation() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setSelectedItemId(R.id.bottom_Site);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+
+            int itemId = item.getItemId();
+            if (itemId ==  R.id.bottom_Site){
+                return true;
+
+            } else if (itemId ==  R.id.bottom_home) {
+                startActivity(new Intent(getApplicationContext(), BottomNavActivity.class));
+                overridePendingTransition(R.anim.slide_right, R.anim.slide_left);
+                finish();
+                return true;
+            }else if (itemId ==  R.id.bottom_profile) {
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                overridePendingTransition(R.anim.slide_right, R.anim.slide_left);
+                finish();
+                return true;
+            }else
+                return false;
+        });
     }
 
 }

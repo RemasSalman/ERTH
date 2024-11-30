@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".BottomNavActivity"
+    android:background="@drawable/background2"
+    
 >
 
     <SearchView
@@ -29,25 +31,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Current Researches"
-        android:textColor="@color/black"
+        android:textColor="#735C52"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"
+        android:textAllCaps="true"
+        android:fontFamily="serif"
+        android:layout_marginTop="30dp"
         android:layout_below="@id/searchView"
         android:layout_marginStart="20dp"
         android:visibility="visible"
-        android:textSize="20sp" />
-
-    <ListView
-        android:id="@+id/researchListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_research_header"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="90dp"
-        android:dividerHeight="30dp"
-        android:divider="#FCF5FD"/>
+        android:textSize="18sp" />
 
 
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/researchRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_research_header"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="90dp" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -70,13 +73,13 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_research"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_height="71dp"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/ic_add"
-        android:layout_marginBottom="160dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginEnd="30dp"
+        android:layout_marginBottom="149dp"
         android:contentDescription="Add Research"
         app:backgroundTint="@color/white"
-        android:visibility="gone" />
+        app:srcCompat="@drawable/vector" />
+
 </RelativeLayout>

@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,24 +34,22 @@ public class BottomNavActivity extends AppCompatActivity {
     private List<String> itemList; // This will hold your data
     private List<String> filteredList;
     private FloatingActionButton fabAddResearch;
-    private ListView researchListView;
-    private ArrayAdapter<String> researchAdapter;
+    private RecyclerView researchRecyclerView;
     private List<String> researchList;
     private TextView tvResearchHeader;
-
+    private ResearchAdapter researchAdapter;
     private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_bottom_nav);
 
         searchView = findViewById(R.id.searchView);
         listView = findViewById(R.id.listView);
         fabAddResearch = findViewById(R.id.fab_add_research);
         fabAddResearch.setVisibility(View.GONE);
-        researchListView = findViewById(R.id.researchListView);
+        researchRecyclerView = findViewById(R.id.researchRecyclerView);
         tvResearchHeader = findViewById(R.id.tv_research_header);
 
 
@@ -61,11 +61,42 @@ public class BottomNavActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1
                 , filteredList);
         listView.setAdapter(adapter);
-        researchAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, researchList);
-        researchListView.setAdapter(researchAdapter);
+
+
+        researchAdapter = new ResearchAdapter(this, researchList);
+        researchRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        researchRecyclerView.setAdapter(researchAdapter);
 
         loadDataFromFirebase();
         loadResearchesFromFirebase();
+
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            String selectedItem = filteredList.get(position);
+            String[] parts = selectedItem.split(" \\("); // Extract the full name and email
+            String email = parts[1].replace(")", "");   // Get email from the item
+
+            // Query to find the userId by email
+            databaseReference.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                            String userId = userSnapshot.getKey();
+                            Intent intent = new Intent(BottomNavActivity.this, ProfileActivity.class);
+                            intent.putExtra("userId", userId); // Pass userId to ProfileActivity
+                            startActivity(intent);
+                        }
+                    } else {
+                        Toast.makeText(BottomNavActivity.this, "User not found", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(BottomNavActivity.this, "Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -79,11 +110,11 @@ public class BottomNavActivity extends AppCompatActivity {
                 // Show the ListView if there is a query
                 if (!newText.isEmpty() && !filteredList.isEmpty()) {
                     listView.setVisibility(ListView.VISIBLE);
-                    researchListView.setVisibility(ListView.GONE);
+                    researchRecyclerView.setVisibility(ListView.GONE);
                     tvResearchHeader.setVisibility(TextView.GONE);
                 } else {
                     listView.setVisibility(ListView.GONE);// Hide if the query is empty
-                    researchListView.setVisibility(ListView.VISIBLE);
+                    researchRecyclerView.setVisibility(ListView.VISIBLE);
                     tvResearchHeader.setVisibility(TextView.VISIBLE);
                 }
                 return true;
