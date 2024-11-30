@@ -171,7 +171,7 @@ public class BottomNavActivity extends AppCompatActivity {
                         for (DataSnapshot researchSnapshot : researchesSnapshot.getChildren()) {
                             String researchTitle = researchSnapshot.getValue(String.class);
                             if (fullName != null && researchTitle != null) {
-                                researchList.add(fullName + " : \n " + researchTitle);
+                                researchList.add(fullName + " :  \n\n " + researchTitle);
                             }
                         }
                     }
